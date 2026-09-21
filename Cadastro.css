@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    padding: 0;
+    background-color: #7bbe29;
+    font-size: 20px;
+    font-family: arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.criar-conta {
+    margin: 10px 50px auto;
+    padding: 5%;
+    background-color: rgb(83, 145, 41);
+    border-radius: 50px;
+
+}
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 50%;
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 16px;
+    justify-content: space-between;
+    text-align: left;
+}
+button{
+    width: 50%;
+    border-radius: 60px;
+    padding: 5px;
+    cursor:pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    background-color: rgb(255, 255, 255);
+}
+button:hover{
+    background-color: #000000;
+    color: antiquewhite;
+}
