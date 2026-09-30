@@ -8,30 +8,32 @@
     <link rel="stylesheet" href="cssbasico.css">    
     <script src="login.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-   
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playwrite+BE+WAL+Guides&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sue+Ellen+Francisco&display=swap" rel="stylesheet">
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 <body>
     <div class="metade-da-tela">
-         <h1>Faça login para acessar sua conta e começar a explorar!</h1>
+         <h1>
+            Faça login para acessar sua conta e começar a <span style="color: #17caf3">explorar!</span>
+        </h1>
     </div>
      <div class="caixa-topo">
-    <i class="bi bi-joystick"></i><p>Estudo com Jogos</p>
+    <i class="bi bi-joystick"></i><p>Estudo com <span style="color: #17caf3">Jogos</span></p>
         <a href="cadastro.html">Cadastro</a>
     </div>
     <div class="container">
         <form class="login-form" id="loginForm" novalidate>
             <h1>Entre em sua conta</h1>
             <div id="error-message" class="error-message"></div>
-            <i class="bi bi-person-fill"></i>
-            <input type="text" id="username" name="username" required placeholder="Nome de usuário">
-            <br><br>
-            <i class="bi bi-lock-fill"></i>
-            <input type="password" id="password" name="password" required placeholder="Senha">
-            <br><br>
+            <div class="input-group">
+                <i class="bi bi-person-fill"></i>
+                <input type="text" id="username" name="username" required placeholder="Nome de usuário">
+            </div>
+            <div class="input-group">
+                <i class="bi bi-lock-fill"></i>
+                <input type="password" id="password" name="password" required placeholder="Senha">
+            </div>
             <button type="submit" class="btn-submit" id="btnSubmit">Entrar</button>
         </form>
     </div>

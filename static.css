@@ -1,17 +1,22 @@
 body {
+  font-size: 30px;
+  font-family:'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #1e293b 50%, #fafafa 50%);
+  background: linear-gradient(to right, #2c82b5 50%, #fafafa 50%);
   font-size: 16px;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 .metade-da-tela {
+  background: linear-gradient(to bottom, #015ab3, #013b8b );
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 30px;
+  min-height: 100vh;
   color: #fafafa;
   text-align: left;
   width: 50%;
@@ -26,18 +31,29 @@ body {
   color: #000000;
   text-align: center;
 }
-input[type="text"], input[type="password"] {
+.input-group {
+  position: relative;
   width: 50%;
-  padding: 10px;
-  margin-bottom: 40px;
+  margin: 0 auto 20px auto;
+}
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000000;
+}
+input[type="text"], input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 10px 10px 40px;
   border: 1px solid #000000;
   border-radius: 10px;
   font-size: 16px;
-  justify-content: space-between;
 }
 button {
   padding: 10px 100px;
-  background-color: #2c82b5;
+  background-color: #013c8a;
   color: white;
   border: none;
   border-radius: 20px;
