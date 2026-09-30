@@ -15,9 +15,17 @@
     const avatarImg = document.getElementById('avatarImg');
     const bannerImg = document.getElementById('bannerImg');
   
-    // Inputs de Arquivo
     const avatarInput = document.getElementById('avatarInput');
     const bannerInput = document.getElementById('bannerInput');
+    const avatarWrapper = document.querySelector('.avatar-wrapper');
+
+    // Elementos do Cropper
+    const cropModal = document.getElementById('cropModal');
+    const cropImage = document.getElementById('cropImage');
+    const btnCancelCrop = document.getElementById('btnCancelCrop');
+    const btnApplyCrop = document.getElementById('btnApplyCrop');
+    let cropper = null;
+    let currentCropTarget = null; // 'avatar' ou 'banner'
   
     // Controle de Modo (Visualizar / Editar)
     const viewMode = document.getElementById('viewMode');
@@ -53,31 +61,71 @@
   
     loadSavedProfile();
   
+    // FUNÇÃO PARA ABRIR O MODAL DE CORTE
+    function openCropModal(file, targetType) {
+      if (!file) return;
+      currentCropTarget = targetType;
+      
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        cropImage.src = event.target.result;
+        cropModal.style.display = 'flex';
+        
+        // Destruir cropper anterior se existir
+        if (cropper) cropper.destroy();
+        
+        // Inicializar novo cropper
+        cropper = new Cropper(cropImage, {
+          aspectRatio: targetType === 'avatar' ? 1 : 680 / 200, // 1:1 para avatar, proporção do banner
+          viewMode: 1,
+          autoCropArea: 1,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+    
     // 2. ALTERAR FOTO DE PERFIL (AVATAR)
     avatarInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          avatarImg.src = event.target.result;
-          localStorage.setItem('user_avatar_img', event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
+      openCropModal(e.target.files[0], 'avatar');
+      e.target.value = ''; // Reset para permitir selecionar a mesma imagem
     });
   
     // 3. ALTERAR FOTO DO BANNER
     bannerInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          bannerImg.src = event.target.result;
-          localStorage.setItem('user_banner_img', event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
+      openCropModal(e.target.files[0], 'banner');
+      e.target.value = '';
     });
+    
+    // APLICAR CORTE
+    btnApplyCrop.addEventListener('click', () => {
+      if (!cropper) return;
+      
+      const canvas = cropper.getCroppedCanvas({
+        width: currentCropTarget === 'avatar' ? 300 : 1200, // Resolução max para salvar
+      });
+      
+      const croppedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      
+      if (currentCropTarget === 'avatar') {
+        avatarImg.src = croppedDataUrl;
+        localStorage.setItem('user_avatar_img', croppedDataUrl);
+      } else {
+        bannerImg.src = croppedDataUrl;
+        localStorage.setItem('user_banner_img', croppedDataUrl);
+      }
+      
+      closeCropModal();
+    });
+    
+    // CANCELAR CORTE
+    btnCancelCrop.addEventListener('click', closeCropModal);
+    
+    function closeCropModal() {
+      cropModal.style.display = 'none';
+      if (cropper) cropper.destroy();
+      cropper = null;
+      cropImage.src = '';
+    }
   
     // 4. ABRIR MODO DE EDIÇÃO
     btnEdit.addEventListener('click', () => {
@@ -86,7 +134,7 @@
       inputBio.value = displayBio.textContent;
       inputLocation.value = displayLocation.textContent;
       inputStatus.value = displayStatus.textContent;
-  
+
       viewMode.style.display = 'none';
       editForm.style.display = 'flex';
     });

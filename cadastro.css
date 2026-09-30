@@ -1,52 +1,65 @@
 body {
     margin: 100px;
-    padding: 0;
-    background-color: #1e293b;
-    font-size: 20px;
+    background: linear-gradient(to bottom, #0f172a, #334155);
     font-family: arial, sans-serif;
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .criar-conta {
     margin: 10px 250px auto;
+    box-shadow: #0A1014 0px 0px 50px 10px;
     padding: 5%;
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
     color: #000000;
 
 }
-.criar-conta i{
-    margin: 0 0;
-    padding: 0;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50px;
-    color: #000000;
-    font-size: 16px;
-}
-input[type="text"], input[type="email"], input[type="password"] {
+
+.input-wrapper {
+    position: relative;
     width: 50%;
-    padding: 10px;
-    margin-bottom: 40px;
+    margin: 0 auto 30px auto;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
     border: 1px solid #000000;
     border-radius: 5px;
     font-size: 16px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     text-align: left;
+    box-sizing: border-box;
 }
-button{
-    border-radius: 60px;
+
+button {
+    border-radius: 10px;
     align-items: center;
     padding: 10px 100px;
-    cursor:pointer;
+    cursor: pointer;
     font-size: 16px;
     color: white;
     transition: background-color 0.3s ease;
     border: none;
-    background-color: #2c82b5;
+    background-color: #1B2934;
     transition: 500ms ease;
 }
-button:hover{
-    background-color: #015c91;
-    transform: scale(1.1);
+
+button:hover {
+    background-color: #0A1014;
+    transform: scale(1.05);
 }

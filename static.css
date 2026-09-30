@@ -1,71 +1,89 @@
 body {
-  font-size: 30px;
-  font-family:'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #2c82b5 50%, #fafafa 50%);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #1e293b 50%, #fafafa 50%);
   font-size: 16px;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
+
 .metade-da-tela {
-  background: linear-gradient(to bottom, #015ab3, #013b8b );
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
   margin: 0;
   padding: 30px;
-  min-height: 100vh;
   color: #fafafa;
+  background: linear-gradient(to bottom, #0f172a, #334155);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: left;
   width: 50%;
   font-size: 25px;
 }
 
+.metade-da-tela h6 {
+  text-align: left;
+  margin-top: 10px;
+}
+
 .container {
   box-sizing: border-box;
+  box-shadow: #1e293b;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   margin: 0;
   padding: 30px;
   color: #000000;
   text-align: center;
 }
-.input-group {
+
+.input-wrapper {
   position: relative;
   width: 50%;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 30px auto;
 }
-.input-group i {
+
+.input-wrapper i {
   position: absolute;
-  left: 15px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #000000;
+  color: #555;
+  font-size: 16px;
+  pointer-events: none;
 }
-input[type="text"], input[type="password"] {
+
+input[type="text"],
+input[type="password"] {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px 10px 10px 40px;
+  padding: 10px 10px 10px 36px;
   border: 1px solid #000000;
   border-radius: 10px;
   font-size: 16px;
+  box-sizing: border-box;
 }
+
 button {
   padding: 10px 100px;
-  background-color: #013c8a;
+  background-color: #1e293b;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
   justify-content: space-between;
   transition: 500ms ease;
 }
+
 button:hover {
-  background-color: #015c91;
-  transform: scale(1.1);
+  background-color: #0A1014;
+  transform: scale(1.05);
 }
 
 .error-message {
@@ -85,8 +103,15 @@ button:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .input-error {
