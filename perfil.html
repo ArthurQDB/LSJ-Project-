@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="perfil.css">
+</head>
+
+<body>
+
+  <main class="profile-card">
+
+    <!-- BANNER COM BOTÃO DE ALTERAR -->
+    <div class="banner-wrapper">
+      <img id="bannerImg"
+        src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?w=1200&auto=format&fit=crop&q=80"
+        alt="Banner do Perfil">
+      <label for="bannerInput" class="btn-change-banner" title="Trocar Banner">
+        📷 Trocar Banner
+      </label>
+      <input type="file" id="bannerInput" accept="image/*">
+    </div>
+
+    <!-- ÁREA PRINCIPAL DO PERFIL -->
+    <div class="profile-body">
+
+      <!-- FOTO DE PERFIL (AVATAR) COM BOTÃO DE ALTERAR -->
+      <div class="avatar-wrapper">
+        <img id="avatarImg"
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80"
+          alt="Foto de Perfil">
+        <label for="avatarInput" class="btn-change-avatar" title="Trocar Foto">
+          📷
+        </label>
+        <input type="file" id="avatarInput" accept="image/*">
+      </div>
+
+      <!-- INFORMAÇÕES DO USUÁRIO -->
+      <div class="profile-details">
+
+        <!-- 1. MODO DE VISUALIZAÇÃO -->
+        <div id="viewMode">
+          <h1 id="displayName">Luna Valente</h1>
+          <p class="tagline" id="displayHeadline">Estudante de Ciência da Computação</p>
+          <p class="bio" id="displayBio">Apaixonada por tecnologia, design e desenvolvimento web. Sempre aprendendo
+            coisas novas.</p>
+
+          <div class="meta-info">
+            <span id="displayLocation">📍 Rio de Janeiro, Brasil</span>
+            <span id="displayStatus">💬 Aberta a projetos de estudo</span>
+          </div>
+
+          <button id="btnEdit" class="btn btn-primary">Editar Perfil</button>
+        </div>
+
+        <!-- 2. MODO DE EDIÇÃO (FORMULÁRIO) -->
+        <form id="editForm" class="edit-form" style="display: none;">
+          <div class="form-group">
+            <label for="inputName">Nome</label>
+            <input type="text" id="inputName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inputHeadline">Ocupação / Curso</label>
+            <input type="text" id="inputHeadline">
+          </div>
+
+          <div class="form-group">
+            <label for="inputBio">Biografia</label>
+            <textarea id="inputBio" rows="3"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="inputLocation">Localização</label>
+              <input type="text" id="inputLocation">
+            </div>
+            <div class="form-group">
+              <label for="inputStatus">Status</label>
+              <input type="text" id="inputStatus">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="btnCancel" class="btn btn-secondary">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

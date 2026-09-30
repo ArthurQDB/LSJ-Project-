@@ -1,0 +1,52 @@
+body {
+    margin: 100px;
+    padding: 0;
+    background-color: #1e293b;
+    font-size: 20px;
+    font-family: arial, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+.criar-conta {
+    margin: 10px 250px auto;
+    padding: 5%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    color: #000000;
+
+}
+.criar-conta i{
+    margin: 0 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    color: #000000;
+    font-size: 16px;
+}
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 40px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    justify-content: space-between;
+    text-align: left;
+}
+button{
+    border-radius: 60px;
+    align-items: center;
+    padding: 10px 100px;
+    cursor:pointer;
+    font-size: 16px;
+    color: white;
+    transition: background-color 0.3s ease;
+    border: none;
+    background-color: #2c82b5;
+    transition: 500ms ease;
+}
+button:hover{
+    background-color: #015c91;
+    transform: scale(1.1);
+}
