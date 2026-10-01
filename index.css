@@ -1,0 +1,36 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 30px;
+    color: #fafafa;
+    background: linear-gradient(to bottom, #0f172a, #334155);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    font-size: 25px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.missão {
+    text-align: center;
+    margin: 300px;
+    border: none;
+    border-radius: 10px;
+    padding: 1px;
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+.visão {
+    text-align: center;
+    margin: 300px;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #0f172a;
+}
