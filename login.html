@@ -14,8 +14,20 @@
 <body>
     <div class="caixa-topo">
         <div class="caixa-topo-esquerda" onclick="window.location.href='index.html'">
-            <i class="bi bi-joystick"></i>
-            <p>Estudos com Jogos</p>
+            <div class="logo-blob-wrapper">
+                <div class="logo-blob-layer">
+                    <div class="logo-blobs">
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                    </div>
+                </div>
+                <div class="logo-text-mask">
+                    <i class="bi bi-joystick"></i>
+                    <p>Estudos com <span style="color: #38bdf8;">Jogos</span></p>
+                </div>
+            </div>
         </div>
         <div class="caixa-topo-direita">
             <a href="cadastro.html">Cadastro</a>
@@ -44,6 +56,16 @@
             <button type="submit" class="btn-submit" id="btnSubmit">Entrar</button>
         </form>
     </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+        </defs>
+    </svg>
 </body>
 
 </html>

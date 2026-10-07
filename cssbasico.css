@@ -78,3 +78,89 @@
     background-color: rgba(255, 255, 255, 0.1);
     text-decoration: underline;
 }
+
+/* Efeito blob/gooey no texto "Estudos com Jogos" */
+.logo-blob-wrapper {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  mix-blend-mode: screen; /* Remove o fundo preto e revela o azul da navbar */
+}
+
+.logo-blob-layer {
+  position: absolute;
+  inset: 0;
+  background: #ffffff; /* Fundo branco que será visível através do texto (branco no screen = branco) */
+  overflow: hidden;
+  border-radius: 30px; /* Impede que as bolhas passem do limite */
+}
+
+.logo-blobs {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: url("#goo");
+  background: transparent;
+}
+
+.logo-blob {
+  position: absolute;
+  top: 2px;
+  width: 25%;
+  height: 100%;
+  background: #38bdf8;
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+}
+
+@supports (filter: url("#goo")) {
+  .logo-blob {
+    transform: translate3d(0, 150%, 0) scale(1.4);
+  }
+}
+
+.logo-blob:nth-child(1) { left: 0%;  transition-delay: 0s; }
+.logo-blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.logo-blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.logo-blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+.caixa-topo-esquerda:hover .logo-blob {
+  transform: translateZ(0) scale(1.7);
+}
+
+@supports (filter: url("#goo")) {
+  .caixa-topo-esquerda:hover .logo-blob {
+    transform: translateZ(0) scale(1.4);
+  }
+}
+
+.logo-text-mask {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #000000; /* Preto. Multiplicado pelas bolhas fica preto. No screen fica transparente. */
+  color: #ffffff; /* Branco. Multiplicado pelas bolhas revela as bolhas! */
+  mix-blend-mode: multiply;
+  padding: 4px 8px;
+}
+
+.logo-text-mask i {
+  color: #ffffff;
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text-mask p {
+  color: #ffffff;
+  margin: 0;
+  font-size: 19px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
