@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.style.opacity = "0.7";
         submitBtn.style.pointerEvents = "none";
 
-        // 5. Redirecionar para perfil.html apenas quando preenchido corretamente
+        // 5. Redirecionar para dashboard.html apenas quando preenchido corretamente
         setTimeout(() => {
-            window.location.href = "perfil.html";
+            window.location.href = "dashboard.html";
         }, 300);
     });
 });

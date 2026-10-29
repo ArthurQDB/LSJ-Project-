@@ -1,4 +1,0 @@
-Azul principal:2c82b5
-Azul mais escuro:015c91
-Azul claro:88cdf6
-Azul mais claro ainda:bce5ff

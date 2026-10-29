@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dashboard - Estudos com Jogos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="dashboard.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ===== OVERLAY MOBILE ===== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <i class="bi bi-joystick"></i>
+      </div>
+      <span class="sidebar-logo-text">Estudos com <strong>Jogos</strong></span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <!-- Navegação Principal -->
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="sidebar-link active" data-label="Dashboard" data-tab="dashboard">
+        <i class="bi bi-grid-1x2-fill"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#jogos" class="sidebar-link" data-label="Jogos" data-tab="jogos">
+        <i class="bi bi-controller"></i>
+        <span>Jogos</span>
+      </a>
+      <a href="#ranking" class="sidebar-link" data-label="Ranking" data-tab="ranking">
+        <i class="bi bi-trophy-fill"></i>
+        <span>Ranking</span>
+      </a>
+      <a href="#conquistas" class="sidebar-link" data-label="Conquistas" data-tab="conquistas">
+        <i class="bi bi-patch-check-fill"></i>
+        <span>Conquistas</span>
+      </a>
+      <a href="#cursos" class="sidebar-link" data-label="Cursos" data-tab="cursos">
+        <i class="bi bi-book-fill"></i>
+        <span>Cursos</span>
+      </a>
+      <a href="#comunidade" class="sidebar-link" data-label="Comunidade" data-tab="comunidade">
+        <i class="bi bi-people-fill"></i>
+        <span>Comunidade</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+    <hr class="sidebar-divider">
+
+    <!-- Rodapé da Sidebar -->
+    <div class="sidebar-footer">
+      <a href="perfil.html" class="sidebar-link" data-label="Perfil">
+        <img id="sidebarAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="Avatar" class="sidebar-avatar">
+        <span id="sidebarUsername">Usuário</span>
+      </a>
+      <a href="login.html" class="sidebar-link sidebar-logout" data-label="Sair" id="btnLogout">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>Sair</span>
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ===== TOPBAR MOBILE ===== -->
+  <header class="topbar-mobile" id="topbarMobile">
+    <button class="topbar-menu-btn" id="btnOpenSidebar" aria-label="Abrir menu">
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="topbar-logo">
+      <i class="bi bi-joystick"></i>
+      <span>Estudos com <strong>Jogos</strong></span>
+    </div>
+    <div class="topbar-avatar-wrapper">
+      <img id="topbarAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80" alt="Avatar" class="topbar-avatar">
+    </div>
+  </header>
+
+  <!-- ===== ÁREA PRINCIPAL ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ABA 1: DASHBOARD INICIAL -->
+    <section class="tab-pane active" id="tab-dashboard">
+      <div class="welcome-card">
+        <div class="welcome-badge"><i class="bi bi-stars"></i> Painel do Estudante</div>
+        <h1 class="welcome-title">Olá, <span id="welcomeName">Estudante</span>! 👋</h1>
+        <p class="welcome-desc">Pronto para exercitar o cérebro hoje? Acesse a aba de <strong>Jogos</strong> para conferir o <strong>Quiz de Matemática</strong> e outros desafios interativos!</p>
+        
+        <div class="welcome-actions">
+          <button class="btn-start-quiz" id="btnQuickStartJogos">
+            <i class="bi bi-controller"></i> Ver Jogos Disponíveis
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 2: JOGOS (CONTÉM O CATÁLOGO E O QUIZ DE MATEMÁTICA) -->
+    <section class="tab-pane" id="tab-jogos">
+      
+      <!-- Visão 1: Catálogo de Jogos -->
+      <div id="gamesCatalogView" class="games-section">
+        <div class="games-header">
+          <div class="quiz-tag"><i class="bi bi-controller"></i> Plataforma Gamificada</div>
+          <h1 class="quiz-title">Jogos Educativos</h1>
+          <p class="quiz-subtitle">Escolha um jogo abaixo para treinar suas habilidades e acumular pontos de XP!</p>
+        </div>
+
+        <div class="games-grid">
+          <!-- Card 1: Quiz de Matemática (Ativo / Jogável) -->
+          <div class="game-card active-game-card">
+            <div class="game-card-banner math-banner">
+              <i class="bi bi-calculator-fill"></i>
+            </div>
+            <div class="game-body">
+              <div class="game-tag" style="background:rgba(56,189,248,0.2); color:#38bdf8;">Matemática &amp; Raciocínio</div>
+              <h3 class="game-title">Quiz de Matemática</h3>
+              <p class="game-desc">Resolva operações rápidas de adição, subtração, multiplicação e divisão contra o tempo!</p>
+              <div class="game-meta">
+                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> +15 XP / acerto</span>
+                <span><i class="bi bi-stopwatch-fill" style="color:#34d399;"></i> 10 Perguntas</span>
+              </div>
+              <button class="game-btn" id="btnPlayMathGame">
+                <i class="bi bi-play-fill"></i> Jogar Agora
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Caça ao Bug (Em Breve) -->
+          <div class="game-card">
+            <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=400&auto=format&fit=crop&q=80" alt="Caça ao Bug" class="game-img">
+            <div class="game-body">
+              <div class="game-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">Programação</div>
+              <h3 class="game-title">Caça ao Bug</h3>
+              <p class="game-desc">Encontre e corrija erros de sintaxe e lógica no código antes que o tempo esgote.</p>
+              <div class="game-meta">
+                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> 200 XP</span>
+                <span><i class="bi bi-clock" style="color:#94a3b8;"></i> Em Breve</span>
+              </div>
+              <button class="game-btn disabled-btn" disabled>
+                <i class="bi bi-lock-fill"></i> Em Breve
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Labirinto de Algoritmos (Em Breve) -->
+          <div class="game-card">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop&q=80" alt="Labirinto de Algoritmos" class="game-img">
+            <div class="game-body">
+              <div class="game-tag" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">Algoritmos</div>
+              <h3 class="game-title">Labirinto de Algoritmos</h3>
+              <p class="game-desc">Guie o personagem pelo mapa usando instruções lógicas e estruturas condicionais.</p>
+              <div class="game-meta">
+                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> 300 XP</span>
+                <span><i class="bi bi-clock" style="color:#94a3b8;"></i> Em Breve</span>
+              </div>
+              <button class="game-btn disabled-btn" disabled>
+                <i class="bi bi-lock-fill"></i> Em Breve
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visão 2: Quiz de Matemática (Aberto ao clicar no card de matemática) -->
+      <div id="mathQuizGameView" class="quiz-wrapper" style="display: none;">
+        <button class="btn-back-games" id="btnBackToGamesCatalog">
+          <i class="bi bi-arrow-left"></i> Voltar aos Jogos
+        </button>
+
+        <div class="quiz-container">
+          <!-- Cabeçalho do Quiz -->
+          <div class="quiz-header">
+            <div class="quiz-header-info">
+              <div class="quiz-tag"><i class="bi bi-calculator-fill"></i> Jogo em Andamento</div>
+              <h1 class="quiz-title">Quiz de Matemática</h1>
+              <p class="quiz-subtitle">Resolva as contas rapidamente para ganhar XP e turbinar seu raciocínio!</p>
+            </div>
+
+            <div class="quiz-stats-group">
+              <div class="quiz-stat-card">
+                <i class="bi bi-lightning-charge-fill stat-icon-xp"></i>
+                <div>
+                  <span class="stat-number" id="quizScore">0</span>
+                  <span class="stat-title">XP</span>
+                </div>
+              </div>
+              <div class="quiz-stat-card">
+                <i class="bi bi-fire stat-icon-fire"></i>
+                <div>
+                  <span class="stat-number" id="quizStreak">0</span>
+                  <span class="stat-title">Combo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card de Pergunta Ativa -->
+          <div class="quiz-play-card" id="quizPlayCard">
+            <div class="quiz-card-top">
+              <div class="quiz-question-counter">
+                Questão <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">10</span>
+              </div>
+              <span class="quiz-level-badge" id="quizLevelBadge">Básico</span>
+            </div>
+
+            <!-- Barra de Progresso -->
+            <div class="quiz-progress-bar-track">
+              <div class="quiz-progress-bar-fill" id="quizProgressBar" style="width: 10%;"></div>
+            </div>
+
+            <!-- Equação / Pergunta -->
+            <div class="quiz-expression-wrapper">
+              <span class="quiz-expression-prompt">Quanto é:</span>
+              <div class="quiz-expression-text" id="quizExpressionText">--</div>
+            </div>
+
+            <!-- Grade de Opções de Resposta -->
+            <div class="quiz-options-grid" id="quizOptionsGrid">
+              <!-- Gerado via dashboard.js -->
+            </div>
+
+            <!-- Mensagem de feedback (correto/incorreto) -->
+            <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+          </div>
+
+          <!-- Card de Resultado Final -->
+          <div class="quiz-result-card" id="quizResultCard" style="display: none;">
+            <div class="result-trophy-icon">
+              <i class="bi bi-trophy-fill"></i>
+            </div>
+            <h2 class="result-title">Quiz Concluído!</h2>
+            <p class="result-description" id="resultDescription">Ótimo trabalho exercitando seus cálculos!</p>
+
+            <div class="result-stats-grid">
+              <div class="result-stat-item">
+                <span class="result-stat-val" id="resultTotalScore">0</span>
+                <span class="result-stat-lbl">XP Total Ganho</span>
+              </div>
+              <div class="result-stat-item">
+                <span class="result-stat-val" id="resultAccuracy">0%</span>
+                <span class="result-stat-lbl">Aproveitamento</span>
+              </div>
+              <div class="result-stat-item">
+                <span class="result-stat-val" id="resultCorrectCount">0/10</span>
+                <span class="result-stat-lbl">Acertos</span>
+              </div>
+            </div>
+
+            <div class="result-actions">
+              <button class="btn-play-again" id="btnRestartQuiz">
+                <i class="bi bi-arrow-repeat"></i> Jogar Novamente
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ABA GENÉRICA / PLACEHOLDER PARA OUTRAS SEÇÕES -->
+    <section class="tab-pane" id="tab-generic">
+      <div class="welcome-card text-center">
+        <div class="welcome-badge"><i class="bi bi-hourglass-split"></i> Em Breve</div>
+        <h2 class="welcome-title" id="genericTabTitle">Seção em Construção</h2>
+        <p class="welcome-desc">Novas atividades e módulos educativos estão sendo adicionados!</p>
+        <div class="welcome-actions">
+          <button class="btn-start-quiz" onclick="window.location.hash = '#jogos'">
+            <i class="bi bi-controller"></i> Ir para Jogos
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SVG Goo Filter (legacy compat) -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;width:0;height:0;">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+      </filter>
+    </defs>
+  </svg>
+
+</body>
+</html>
+
