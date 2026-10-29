@@ -6,13 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil do Usuário</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<<<<<<< HEAD:html/perfil.html
-  <link rel="stylesheet" href="../css/cssbasico.css">
-  <link rel="stylesheet" href="../css/perfil.css">
-=======
-  <link rel="stylesheet" href="/css/cssbasico.css">
-  <link rel="stylesheet" href="/css/perfil.css">
->>>>>>> d1a944ba217cd9c59f6652d1138bbf8ccbe93fbe:perfil.html
+  <link rel="stylesheet" href="cssbasico.css">
+  <link rel="stylesheet" href="perfil.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
 </head>
 
@@ -45,7 +40,7 @@
         src="https://images.unsplash.com/photo-1707343843437-caacff5cfa74?w=1200&auto=format&fit=crop&q=80"
         alt="Banner do Perfil">
       <label for="bannerInput" class="btn-change-banner" title="Trocar Banner">
-        Trocar Banner
+        📷 Trocar Banner
       </label>
       <input type="file" id="bannerInput" accept="image/*">
     </div>
@@ -56,7 +51,7 @@
       <!-- FOTO DE PERFIL (AVATAR) COM BOTÃO DE ALTERAR -->
       <div class="avatar-wrapper">
         <img id="avatarImg"
-          src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80"
           alt="Foto de Perfil">
         <label for="avatarInput" class="btn-change-avatar" title="Trocar Foto">
           📷
@@ -69,13 +64,13 @@
 
         <!-- 1. MODO DE VISUALIZAÇÃO -->
         <div id="viewMode">
-          <span id="welcomeName">Estudante</span>
+          <h1 id="displayName">Luna Valente</h1>
           <p class="tagline" id="displayHeadline">Insira sua ocupação</p>
           <p class="bio" id="displayBio">Insira sua biografia</p>
 
           <div class="meta-info">
-            <span id="displayLocation">Insira sua localização</span>
-            <span id="displayStatus">Insira sua ocupação</span>
+            <span id="displayLocation">📍 Rio de Janeiro, Brasil</span>
+            <span id="displayStatus">💬 Aberta a projetos de estudo</span>
           </div>
 
           <button id="btnEdit" class="btn btn-primary">Editar Perfil</button>
@@ -134,14 +129,13 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-  <script src="../js/app.js"></script>
+  <script src="app.js"></script>
 
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
     <defs>
       <filter id="goo">
         <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
-        </feColorMatrix>
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
         <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
       </filter>
     </defs>
