@@ -38,22 +38,6 @@
         <i class="bi bi-controller"></i>
         <span>Jogos</span>
       </a>
-      <a href="#ranking" class="sidebar-link" data-label="Ranking" data-tab="ranking">
-        <i class="bi bi-trophy-fill"></i>
-        <span>Ranking</span>
-      </a>
-      <a href="#conquistas" class="sidebar-link" data-label="Conquistas" data-tab="conquistas">
-        <i class="bi bi-patch-check-fill"></i>
-        <span>Conquistas</span>
-      </a>
-      <a href="#cursos" class="sidebar-link" data-label="Cursos" data-tab="cursos">
-        <i class="bi bi-book-fill"></i>
-        <span>Cursos</span>
-      </a>
-      <a href="#comunidade" class="sidebar-link" data-label="Comunidade" data-tab="comunidade">
-        <i class="bi bi-people-fill"></i>
-        <span>Comunidade</span>
-      </a>
     </nav>
 
     <div class="sidebar-spacer"></div>
@@ -97,14 +81,13 @@
     <!-- ABA 1: DASHBOARD INICIAL -->
     <section class="tab-pane active" id="tab-dashboard">
       <div class="welcome-card">
-        <div class="welcome-badge"><i class="bi bi-stars"></i> Painel do Estudante</div>
-        <h1 class="welcome-title">Olá, <span id="welcomeName">Estudante</span>! 👋</h1>
+        <h1 class="welcome-title">Olá, <span id="welcomeName">Estudante</span>!</h1>
         <p class="welcome-desc">Pronto para exercitar o cérebro hoje? Acesse a aba de <strong>Jogos</strong> para
           conferir o <strong>Quiz de Matemática</strong> e outros desafios interativos!</p>
 
         <div class="welcome-actions">
           <button class="btn-start-quiz" id="btnQuickStartJogos">
-            <i class="bi bi-controller"></i> Ver Jogos Disponíveis
+            Ver Jogos Disponíveis
           </button>
         </div>
       </div>
@@ -116,7 +99,6 @@
       <!-- Visão 1: Catálogo de Jogos -->
       <div id="gamesCatalogView" class="games-section">
         <div class="games-header">
-          <div class="quiz-tag"><i class="bi bi-controller"></i> Plataforma Gamificada</div>
           <h1 class="quiz-title">Jogos Educativos</h1>
           <p class="quiz-subtitle">Escolha um jogo abaixo para treinar suas habilidades e acumular pontos de XP!</p>
         </div>
@@ -142,45 +124,8 @@
               </button>
             </div>
           </div>
-
-          <!-- Card 2: Caça ao Bug (Em Breve) -->
-          <div class="game-card">
-            <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=400&auto=format&fit=crop&q=80"
-              alt="Caça ao Bug" class="game-img">
-            <div class="game-body">
-              <div class="game-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">Programação</div>
-              <h3 class="game-title">Caça ao Bug</h3>
-              <p class="game-desc">Encontre e corrija erros de sintaxe e lógica no código antes que o tempo esgote.</p>
-              <div class="game-meta">
-                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> 200 XP</span>
-                <span><i class="bi bi-clock" style="color:#94a3b8;"></i> Em Breve</span>
-              </div>
-              <button class="game-btn disabled-btn" disabled>
-                <i class="bi bi-lock-fill"></i> Em Breve
-              </button>
-            </div>
-          </div>
-
-          <!-- Card 3: Labirinto de Algoritmos (Em Breve) -->
-          <div class="game-card">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop&q=80"
-              alt="Labirinto de Algoritmos" class="game-img">
-            <div class="game-body">
-              <div class="game-tag" style="background:rgba(52,211,153,0.2); color:#6ee7b7;">Algoritmos</div>
-              <h3 class="game-title">Labirinto de Algoritmos</h3>
-              <p class="game-desc">Guie o personagem pelo mapa usando instruções lógicas e estruturas condicionais.</p>
-              <div class="game-meta">
-                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> 300 XP</span>
-                <span><i class="bi bi-clock" style="color:#94a3b8;"></i> Em Breve</span>
-              </div>
-              <button class="game-btn disabled-btn" disabled>
-                <i class="bi bi-lock-fill"></i> Em Breve
-              </button>
-            </div>
-          </div>
         </div>
       </div>
-
       <!-- Visão 2: Quiz de Matemática (Aberto ao clicar no card de matemática) -->
       <div id="mathQuizGameView" class="quiz-wrapper" style="display: none;">
         <button class="btn-back-games" id="btnBackToGamesCatalog">
