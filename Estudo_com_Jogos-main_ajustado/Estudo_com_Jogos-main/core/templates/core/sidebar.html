@@ -1,0 +1,68 @@
+<!-- ===== OVERLAY MOBILE ===== -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar" data-username="{% if user.is_authenticated %}{{ user.username }}{% endif %}">
+
+    <!-- Logo (sem link para a index) -->
+    <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">
+            <i class="bi bi-joystick"></i>
+        </div>
+        <span class="sidebar-logo-text">Estudos com <strong>Jogos</strong></span>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <!-- Navegação Principal -->
+    <nav class="sidebar-nav">
+        <a href="{% url 'jogar' %}#dashboard"
+            class="sidebar-link {% if request.resolver_match.url_name == 'jogar' %}active{% endif %}"
+            data-label="Dashboard" data-tab="dashboard">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="{% url 'jogar' %}#jogos" class="sidebar-link" data-label="Jogos" data-tab="jogos">
+            <i class="bi bi-controller"></i>
+            <span>Jogos</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+    <hr class="sidebar-divider">
+
+    <!-- Rodapé da Sidebar -->
+    <div class="sidebar-footer">
+        <a href="{% url 'perfil' %}"
+            class="sidebar-link {% if request.resolver_match.url_name == 'perfil' %}active{% endif %}"
+            data-label="Perfil">
+            <img id="sidebarAvatar"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Avatar"
+                class="sidebar-avatar">
+            <span id="sidebarUsername">{{user.username}}</span>
+        </a>
+        <a href="{% url 'login' %}" class="sidebar-link sidebar-logout" data-label="Sair" id="btnLogout">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Sair</span>
+        </a>
+    </div>
+
+</aside>
+
+<!-- ===== TOPBAR MOBILE ===== -->
+<header class="topbar-mobile" id="topbarMobile">
+    <button class="topbar-menu-btn" id="btnOpenSidebar" aria-label="Abrir menu">
+        <i class="bi bi-list"></i>
+    </button>
+    <div class="topbar-logo">
+        <i class="bi bi-joystick"></i>
+        <span>Estudos com <strong>Jogos</strong></span>
+    </div>
+    <div class="topbar-avatar-wrapper">
+        <a href="{% url 'perfil' %}" style="display: flex; align-items: center;" title="Ir para o Perfil">
+            <img id="topbarAvatar"
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Avatar"
+                class="topbar-avatar">
+        </a>
+    </div>
+</header>

@@ -1,0 +1,458 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Jogo — Estudo com Jogos</title>
+
+    <!-- CSS base (compartilhado por todas as páginas) -->
+    <link rel="stylesheet" href="{% static 'css/css_basico.css' %}">
+    <!-- CSS personalizado desta página (sobrescreve o base se precisar) -->
+    <link rel="stylesheet" href="{% static 'css/jogar.css' %}?v=1.3">
+    <script src="{% static 'js/jogar.js' %}?v=1.3" defer></script>
+</head>
+
+<body data-username="{% if user.is_authenticated %}{{ user.username }}{% endif %}">
+
+    {% include 'core/sidebar.html' %}
+
+    <!-- ===== ÁREA PRINCIPAL ===== -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ABA 1: DASHBOARD INICIAL & PAINEL DE EVOLUÇÃO -->
+        <section class="tab-pane active" id="tab-dashboard">
+            <!-- Card de Boas-Vindas com Nível e Progresso -->
+            <div class="welcome-card">
+                <div class="welcome-header-row">
+                    <div class="welcome-info">
+                        <h1 class="welcome-title">Olá, <span id="welcomeName">{{user.username}}</span>
+                            <p class="welcome-desc">Acompanhe sua evolução em tempo real, desbloqueie conquistas e
+                                aumente
+                                seu nível a cada desafio superado!</p>
+
+                            <div class="welcome-actions">
+                                <button class="btn-start-quiz" id="btnQuickStartJogos">
+                                    <i class="bi bi-controller"></i> Jogar Agora
+                                </button>
+                            </div>
+                    </div>
+
+                    <!-- Cartão de Nível e XP do Estudante -->
+                    <div class="student-level-card">
+                        <div class="level-badge" id="studentLevelBadge"><i class="bi bi-award-fill"></i> Nível 1</div>
+                        <div class="level-title" id="studentLevelTitle">Estudante Iniciante</div>
+                        <div class="level-progress-wrapper">
+                            <div class="level-progress-text">
+                                <span id="studentCurrentXp">0 XP</span>
+                                <span id="studentNextLevelXp">/ 100 XP</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" id="studentLevelProgressFill"
+                                    style="width: 0%; background: linear-gradient(90deg, var(--accent), var(--violet));">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE EVOLUÇÃO E DESEMPENHO -->
+            <div class="evolution-section">
+                <div class="evolution-header">
+                    <div class="evolution-title">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Evolução nos Jogos</span>
+                    </div>
+                    <span class="evolution-subtitle">Métricas atualizadas dinamicamente a cada partida</span>
+                </div>
+
+                <!-- 4 Cards de Estatísticas Rápidas -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashTotalXp">0</span>
+                            <span class="stat-label">XP Acumulado</span>
+                        </div>
+                        <span class="stat-trend up" id="dashXpTrend"><i class="bi bi-arrow-up-short"></i> Nível 1</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">
+                            <i class="bi bi-joystick"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashTotalGames">0</span>
+                            <span class="stat-label">Partidas Concluídas</span>
+                        </div>
+                        <span class="stat-trend neutral" id="dashGamesTrend">0 jogos</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(52, 211, 153, 0.15); color: #34d399;">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashAccuracy">0%</span>
+                            <span class="stat-label">Taxa Média de Acerto</span>
+                        </div>
+                        <span class="stat-trend up" id="dashAccuracyTrend">0/0 certas</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(251, 146, 60, 0.15); color: #fb923c;">
+                            <i class="bi bi-fire"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="dashBestStreak">0</span>
+                            <span class="stat-label">Maior Sequência (Combo)</span>
+                        </div>
+                        <span class="stat-trend up" id="dashStreakTrend">Recorde</span>
+                    </div>
+                </div>
+
+                <!-- Painel Médio: Habilidades Desenvolvidas + Conquistas -->
+                <div class="mid-grid">
+                    <!-- Habilidades -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="bi bi-mortarboard-fill"></i> Habilidades Desenvolvidas
+                            </h2>
+                            <span class="card-link" style="cursor: default;">Competências</span>
+                        </div>
+                        <div class="progress-list">
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span><i class="bi bi-calculator"></i> Aritmética &amp; Cálculo Rápido</span>
+                                    <span class="progress-pct" id="skillMathPct">0%</span>
+                                </div>
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill" id="skillMathBar"
+                                        style="width: 0%; background: #38bdf8;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span><i class="bi bi-bullseye"></i> Precisão de Resposta</span>
+                                    <span class="progress-pct" id="skillAccuracyPct">0%</span>
+                                </div>
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill" id="skillAccuracyBar"
+                                        style="width: 0%; background: #34d399;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span><i class="bi bi-stopwatch"></i> Agilidade &amp; Sequência</span>
+                                    <span class="progress-pct" id="skillStreakPct">0%</span>
+                                </div>
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill" id="skillStreakBar"
+                                        style="width: 0%; background: #f59e0b;"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-label">
+                                    <span><i class="bi bi-check2-all"></i> Regularidade nos Desafios</span>
+                                    <span class="progress-pct" id="skillConsistencyPct">0%</span>
+                                </div>
+                                <div class="progress-bar-track">
+                                    <div class="progress-bar-fill" id="skillConsistencyBar"
+                                        style="width: 0%; background: #a855f7;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conquistas e Selos -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="bi bi-trophy-fill"></i> Conquistas e Selos
+                            </h2>
+                            <span class="card-link" id="achievementsUnlockedCount">0 / 4 liberados</span>
+                        </div>
+                        <div class="badges-grid">
+                            <div class="achievement-badge-card" id="badgeFirstGame">
+                                <div class="achievement-icon-wrap locked">
+                                    <i class="bi bi-flag-fill"></i>
+                                </div>
+                                <div class="achievement-info">
+                                    <span class="achievement-name">Primeiro Passo</span>
+                                    <span class="achievement-desc">Completou sua 1ª partida de jogo</span>
+                                </div>
+                            </div>
+
+                            <div class="achievement-badge-card" id="badgeCombo">
+                                <div class="achievement-icon-wrap locked">
+                                    <i class="bi bi-fire"></i>
+                                </div>
+                                <div class="achievement-info">
+                                    <span class="achievement-name">Na Fagulha</span>
+                                    <span class="achievement-desc">Alcançou combo de 3 acertos seguidos</span>
+                                </div>
+                            </div>
+
+                            <div class="achievement-badge-card" id="badgeAccuracy">
+                                <div class="achievement-icon-wrap locked">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                                <div class="achievement-info">
+                                    <span class="achievement-name">Pontaria Mestre</span>
+                                    <span class="achievement-desc">Atingiu 80%+ de precisão em um jogo</span>
+                                </div>
+                            </div>
+
+                            <div class="achievement-badge-card" id="badgeCentury">
+                                <div class="achievement-icon-wrap locked">
+                                    <i class="bi bi-lightning-fill"></i>
+                                </div>
+                                <div class="achievement-info">
+                                    <span class="achievement-name">Estudante Notável</span>
+                                    <span class="achievement-desc">Acumulou 100 ou mais pontos de XP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Histórico de Partidas Recentes -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            <i class="bi bi-clock-history"></i> Histórico Recente de Partidas
+                        </h2>
+                    </div>
+                    <ul class="activity-list" id="dashboardActivityList">
+                        <li class="activity-item empty-history" id="emptyHistoryNotice">
+                            <div class="activity-icon"
+                                style="background: rgba(148, 163, 184, 0.1); color: var(--text-muted);">
+                                <i class="bi bi-info-circle"></i>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Nenhuma partida registrada ainda</span>
+                                <span class="activity-sub">Jogue uma rodada do Quiz de Matemática para começar a ver sua
+                                    evolução aqui!</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 2: JOGOS (CATÁLOGO DE JOGOS & ÁREA DO QUIZ) -->
+        <section class="tab-pane" id="tab-jogos">
+
+            <!-- Visão 1: Catálogo de Jogos -->
+            <div id="gamesCatalogView" class="games-section">
+                <div class="games-header">
+                    <h1 class="quiz-title">Jogos Educativos</h1>
+                    <p class="quiz-subtitle">Escolha um jogo abaixo para treinar suas habilidades, bater recordes e
+                        acumular pontos de XP!</p>
+                </div>
+
+                <div class="games-grid">
+                    <!-- Card 1: Quiz de Matemática (Básico) -->
+                    <div class="game-card active-game-card">
+                        <div class="game-card-banner math-banner">
+                            <i class="bi bi-calculator-fill"></i>
+                        </div>
+                        <div class="game-body">
+                            <div class="game-tag" style="background:rgba(56,189,248,0.2); color:#38bdf8;">Matemática
+                                &amp; Raciocínio</div>
+                            <h3 class="game-title">Quiz de Matemática</h3>
+                            <p class="game-desc">Resolva operações rápidas de adição, subtração, multiplicação e divisão
+                                contra o tempo!</p>
+                            <div class="game-meta">
+                                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> +15 XP /
+                                    acerto</span>
+                                <span><i class="bi bi-stopwatch-fill" style="color:#34d399;"></i> 10 Perguntas</span>
+                            </div>
+                            <button class="game-btn btn-play-quiz" id="btnPlayMathGame" data-quiz="math">
+                                <i class="bi bi-play-fill"></i> Jogar Agora
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Quiz de Aritmética e Expressões -->
+                    <div class="game-card active-game-card">
+                        <div class="game-card-banner arithmetic-banner">
+                            <i class="bi bi-sort-numeric-up-alt"></i>
+                        </div>
+                        <div class="game-body">
+                            <div class="game-tag" style="background:rgba(234,179,8,0.2); color:#facc15;">Aritmética
+                                &amp; Expressões</div>
+                            <h3 class="game-title">Quiz de Aritmética</h3>
+                            <p class="game-desc">Desafios com expressões numéricas, parênteses, potências simples e
+                                ordem das operações!</p>
+                            <div class="game-meta">
+                                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> +15 XP /
+                                    acerto</span>
+                                <span><i class="bi bi-stopwatch-fill" style="color:#34d399;"></i> 10 Perguntas</span>
+                            </div>
+                            <button class="game-btn btn-play-quiz" id="btnPlayArithmeticGame" data-quiz="arithmetic">
+                                <i class="bi bi-play-fill"></i> Jogar Agora
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Porcentagem, Média, Mediana e Moda -->
+                    <div class="game-card active-game-card">
+                        <div class="game-card-banner stats-banner">
+                            <i class="bi bi-pie-chart-fill"></i>
+                        </div>
+                        <div class="game-body">
+                            <div class="game-tag" style="background:rgba(52,211,153,0.2); color:#34d399;">Estatística
+                                &amp; Porcentagem</div>
+                            <h3 class="game-title">Porcentagem, Média, Mediana e Moda</h3>
+                            <p class="game-desc">Calcule porcentagens rápidas e encontre a média, mediana e moda dos
+                                conjuntos de dados!</p>
+                            <div class="game-meta">
+                                <span><i class="bi bi-lightning-charge-fill" style="color:#fbbf24;"></i> +20 XP /
+                                    acerto</span>
+                                <span><i class="bi bi-stopwatch-fill" style="color:#34d399;"></i> 10 Perguntas</span>
+                            </div>
+                            <button class="game-btn btn-play-quiz" id="btnPlayStatsGame" data-quiz="stats">
+                                <i class="bi bi-play-fill"></i> Jogar Agora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Fim de gamesCatalogView -->
+
+            <!-- Visão 2: Área Interativa do Quiz (compartilhada e dinâmica para todos os quizzes) -->
+            <div id="mathQuizGameView" class="quiz-wrapper" style="display: none;">
+                <button class="btn-back-games" id="btnBackToGamesCatalog">
+                    <i class="bi bi-arrow-left"></i> Voltar aos Jogos
+                </button>
+
+                <div class="quiz-container">
+                    <!-- Cabeçalho do Quiz -->
+                    <div class="quiz-header">
+                        <div class="quiz-header-info">
+                            <div class="quiz-tag" id="activeQuizTag"><i class="bi bi-controller"></i> Jogo em Andamento
+                            </div>
+                            <h1 class="quiz-title" id="activeQuizTitle">Quiz de Matemática</h1>
+                            <p class="quiz-subtitle" id="activeQuizSubtitle">Resolva as contas rapidamente para ganhar
+                                XP e turbinar seu raciocínio!</p>
+                        </div>
+
+                        <div class="quiz-stats-group">
+                            <div class="quiz-stat-card">
+                                <i class="bi bi-lightning-charge-fill stat-icon-xp"></i>
+                                <div>
+                                    <span class="stat-number" id="quizScore">0</span>
+                                    <span class="stat-title">XP</span>
+                                </div>
+                            </div>
+                            <div class="quiz-stat-card">
+                                <i class="bi bi-fire stat-icon-fire"></i>
+                                <div>
+                                    <span class="stat-number" id="quizStreak">0</span>
+                                    <span class="stat-title">Combo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card de Pergunta Ativa -->
+                    <div class="quiz-play-card" id="quizPlayCard">
+                        <div class="quiz-card-top">
+                            <div class="quiz-question-counter">
+                                Questão <span id="currentQuestionNum">1</span> de <span id="totalQuestionsNum">10</span>
+                            </div>
+                            <span class="quiz-level-badge" id="quizLevelBadge">Básico</span>
+                        </div>
+
+                        <!-- Barra de Progresso -->
+                        <div class="quiz-progress-bar-track">
+                            <div class="quiz-progress-bar-fill" id="quizProgressBar" style="width: 10%;"></div>
+                        </div>
+
+                        <!-- Equação / Pergunta -->
+                        <div class="quiz-expression-wrapper">
+                            <span class="quiz-expression-prompt" id="quizExpressionPrompt">Quanto é:</span>
+                            <div class="quiz-expression-text" id="quizExpressionText">--</div>
+                        </div>
+
+                        <!-- Grade de Opções de Resposta -->
+                        <div class="quiz-options-grid" id="quizOptionsGrid">
+                            <!-- Gerado dinamicamente -->
+                        </div>
+
+                        <!-- Mensagem de feedback (correto/incorreto) -->
+                        <div class="quiz-feedback-box" id="quizFeedbackBox"></div>
+                    </div>
+
+                    <!-- Card de Resultado Final -->
+                    <div class="quiz-result-card" id="quizResultCard" style="display: none;">
+                        <div class="result-trophy-icon">
+                            <i class="bi bi-trophy-fill"></i>
+                        </div>
+                        <h2 class="result-title">Quiz Concluído!</h2>
+                        <p class="result-description" id="resultDescription">Ótimo trabalho exercitando seus
+                            conhecimentos!</p>
+
+                        <div class="result-stats-grid">
+                            <div class="result-stat-item">
+                                <span class="result-stat-val" id="resultTotalScore">0</span>
+                                <span class="result-stat-lbl">XP Total Ganho</span>
+                            </div>
+                            <div class="result-stat-item">
+                                <span class="result-stat-val" id="resultAccuracy">0%</span>
+                                <span class="result-stat-lbl">Aproveitamento</span>
+                            </div>
+                            <div class="result-stat-item">
+                                <span class="result-stat-val" id="resultCorrectCount">0/10</span>
+                                <span class="result-stat-lbl">Acertos</span>
+                            </div>
+                        </div>
+
+                        <div class="result-actions">
+                            <button class="btn-play-again" id="btnRestartQuiz">
+                                <i class="bi bi-arrow-repeat"></i> Jogar Novamente
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <!-- Fim de mathQuizGameView -->
+        </section>
+
+        <!-- ABA GENÉRICA / PLACEHOLDER PARA OUTRAS SEÇÕES -->
+        <section class="tab-pane" id="tab-generic">
+            <div class="welcome-card text-center">
+                <div class="welcome-badge"><i class="bi bi-hourglass-split"></i> Em Breve</div>
+                <h2 class="welcome-title" id="genericTabTitle">Seção em Construção</h2>
+                <p class="welcome-desc">Novas atividades e módulos educativos estão sendo adicionados!</p>
+                <div class="welcome-actions">
+                    <button class="btn-start-quiz" onclick="window.location.hash = '#jogos'">
+                        <i class="bi bi-controller"></i> Ir para Jogos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SVG Goo Filter (legacy compat) -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position:absolute;width:0;height:0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+                </feColorMatrix>
+                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Início - Estudos com Jogos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/index_apresentacao.css' %}">
+    <link rel="stylesheet" href="{% static 'css/css_basico.css' %}">
+    <noscript>
+        <style>
+            .scroll-reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+    <!-- Barra de navegação fixa no topo -->
+    <div class="caixa-topo">
+        <a href="{% url 'home' %}" class="caixa-topo-esquerda">
+            <div class="logo-blob-wrapper">
+                <div class="logo-blob-layer">
+                    <div class="logo-blobs">
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                        <span class="logo-blob"></span>
+                    </div>
+                </div>
+                <div class="logo-text-mask">
+                    <i class="bi bi-joystick"></i>
+                    <p>Estudos com <span style="color: #4F6F8C;">Jogos</span></p>
+                </div>
+            </div>
+        </a>
+        <div class="caixa-topo-direita">
+            <a href="{% url 'cadastro' %}">Cadastro</a>
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="conteudo-principal">
+        <!-- Seção de Boas-Vindas / Cabeçalho -->
+        <section class="cabecalho scroll-reveal">
+            <h1>Bem-vindo ao <span>Estudos com Jogos!</span></h1>
+            <p>Descubra uma nova maneira de estudar unindo diversão, desafios interativos e
+                conhecimento prático.</p>
+            <div class="scroll-indicator">
+                <span>Role para ver mais</span>
+                <i class="bi bi-chevron-double-down"></i>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós / Apresentação -->
+        <section class="apresentação apresentacao scroll-reveal">
+            <div class="card-topo-badge"><i class="bi bi-people-fill"></i> Nossa História</div>
+            <h1>Sobre nós</h1>
+            <p>Somos um grupo de estudantes de programação que se uniram para criar uma plataforma que une educação e
+                entretenimento. Nosso objetivo é mostrar que é possível aprender de forma divertida e engajadora.</p>
+        </section>
+
+        <!-- Seção de Pilares: Valores, Missão e Visão -->
+        <section class="secao-pilares">
+            <div class="titulo-secao scroll-reveal">
+                <h2>Nossos Pilares</h2>
+                <p>Os princípios fundamentais que guiam cada projeto e iniciativa em nossa comunidade.</p>
+            </div>
+
+            <div class="caixas">
+                <!-- Nossos Valores -->
+                <div class="valores scroll-reveal delay-1">
+                    <div class="card-icon">
+                        <i class="bi bi-gem"></i>
+                    </div>
+                    <h1>Nossos Valores</h1>
+                    <p>Os valores que guiam nosso trabalho são:</p>
+                    <ul>
+                        <li>Educação</li>
+                        <li>Entretenimento</li>
+                        <li>Inovação</li>
+                        <li>Colaboração</li>
+                        <li>Criatividade</li>
+                        <li>Aprendizado</li>
+                        <li>Diversão</li>
+                        <li>Engajamento</li>
+                        <li>Desenvolvimento</li>
+                        <li>Crescimento</li>
+                        <li>Sucesso</li>
+                        <li>Realização</li>
+                        <li>Satisfação</li>
+                    </ul>
+                </div>
+
+                <!-- Nossa Missão -->
+                <div class="missão missao scroll-reveal delay-2">
+                    <div class="card-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+                    <h1>Nossa Missão</h1>
+                    <p>Nossa missão é mostrar que é possível aprender de forma divertida e engajadora, de uma forma que
+                        agregue
+                        valor a quem utiliza a plataforma.</p>
+                </div>
+
+                <!-- Nossa Visão -->
+                <div class="visão visao scroll-reveal delay-3">
+                    <div class="card-icon">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <h1>Nossa Visão</h1>
+                    <p>Nossa visão é ser referência em educação e entretenimento, proporcionando uma experiência única e
+                        memorável aos nossos usuários.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Chamada para Ação (CTA) -->
+        <section class="secao-cta scroll-reveal">
+            <h2>Pronto para transformar seus estudos?</h2>
+            <p>Junte-se à nossa comunidade e explore os jogos educativos hoje mesmo.</p>
+            <div class="cta-botoes">
+                <a href="{% url 'cadastro' %}" class="btn-cta primario">Criar Conta Gratuita</a>
+                <a href="{% url 'login' %}" class="btn-cta secundario">Já tenho uma conta</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="rodape scroll-reveal">
+        <p>&copy; Estudos com Jogos. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Filtro SVG para o efeito blob da logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo">
+                </feColorMatrix>
+                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Script de animações de slide e fade in ao rolar a página -->
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+
+</html>
